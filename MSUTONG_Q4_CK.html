@@ -208,7 +208,8 @@ function renderItem(it){
         '<div class="opts pics">'+it.opts.map((o,k)=>optBtn(n,LET[k],'<span class="pic">'+picHtml(o)+'</span>')).join('')+'</div>';break;
     case 'choice':{
       const lis=it.clip&&!PART[it.part].sharedClip;
-      body=head(it.stem?zh(it.stem):'<span class="qlab">'+(it.sk==='Nghe'?'Nghe và chọn đáp án đúng':'')+'</span>')+(lis?clipBtn(it.clip):'')+
+      const pas=it.passage?'<div class="passage">'+zh(it.passage)+'</div>':'';
+      body=pas+head(it.stem?zh(it.stem):'<span class="qlab">'+(it.sk==='Nghe'?'Nghe và chọn đáp án đúng':'')+'</span>')+(lis?clipBtn(it.clip):'')+
         '<div class="opts">'+it.opts.map((o,k)=>optBtn(n,LET[k],'<span class="txt">'+zh(o)+'</span>')).join('')+'</div>';break}
     case 'slot':{
       let k=0; const parts=it.toks.map(t=>{ if(t==='@'){const L=LET[k++];return '<button class="slot" type="button" data-n="'+n+'" data-a="'+L+'">'+L+'</button>'} return esc(t)}).join('');
